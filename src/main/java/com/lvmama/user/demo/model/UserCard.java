@@ -2,43 +2,40 @@ package com.lvmama.user.demo.model;
 
 import org.springframework.data.annotation.Id;
 
-
-public class User {
-
+public class UserCard {
     @Id
-    private String uid;
+    private Integer id;
 
-    private String username;
+    private Integer uid;
 
-    private Integer age;
+    private String cardnum;
 
     private Integer gender;
 
     private String mobile;
 
+    public Integer getId() {
+        return id;
+    }
 
-    public String getUid() {
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
-    public String getUsername() {
-        return username;
+    public String getCardnum() {
+        return cardnum;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setCardnum(String cardnum) {
+        this.cardnum = cardnum;
     }
 
     public Integer getGender() {
@@ -59,10 +56,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "uid='" + uid + '\'' +
-                ", username='" + username + '\'' +
-                ", age=" + age +
+        return "UserCard{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", cardnum='" + cardnum + '\'' +
                 ", gender=" + gender +
                 ", mobile='" + mobile + '\'' +
                 '}';
