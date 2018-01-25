@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/test")
 public class TestController {
 
     @Autowired
     public StringRedisTemplate redisTemplate;
 
-    @RequestMapping("/test")
+    @RequestMapping("/index")
     public String index(){
         return "test index";
     }
@@ -27,7 +28,6 @@ public class TestController {
 
     @RequestMapping("/redisGet")
     public String redisGet(){
-
         ValueOperations<String,String> ops =  redisTemplate.opsForValue();
         return ops.get("spring10086");
     }
