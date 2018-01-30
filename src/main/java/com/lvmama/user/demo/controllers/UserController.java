@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,17 @@ public class UserController {
     @RequestMapping("/findByName/{name}")
     public String findByUserName(@PathVariable String name){
        return userRepo.findByUsername(name).toString();
+    }
+
+    @RequestMapping("/testReflect")
+    public String testReflect() throws Exception{
+        User model = userRepo.findByUsername("起飞");
+        String tmp = "";
+        for (Field field : model.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            tmp += field.getName() + ":" + field.get(model) ;
+        }
+        return  tmp;
     }
 
 }

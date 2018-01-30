@@ -1,6 +1,7 @@
 package com.lvmama.user.demo.controllers;
 
 
+import com.lvmama.user.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -31,6 +32,8 @@ public class TestController {
         ValueOperations<String,String> ops =  redisTemplate.opsForValue();
         return ops.get("spring10086");
     }
+
+
 
 }
 
