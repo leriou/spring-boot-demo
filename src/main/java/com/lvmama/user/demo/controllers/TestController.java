@@ -8,6 +8,9 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @RestController
 @RequestMapping("/test")
 public class TestController {
@@ -31,6 +34,13 @@ public class TestController {
     public String redisGet(){
         ValueOperations<String,String> ops =  redisTemplate.opsForValue();
         return ops.get("spring10086");
+    }
+
+    @RequestMapping("/preg")
+    public boolean match(){
+        String pattern = "\\d+";
+        Matcher  mt = Pattern.compile(pattern).matcher("10086");
+        return  mt.matches();
     }
 
 
