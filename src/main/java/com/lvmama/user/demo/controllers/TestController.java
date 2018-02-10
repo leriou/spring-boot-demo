@@ -8,6 +8,9 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,6 +20,8 @@ public class TestController {
 
     @Autowired
     public StringRedisTemplate redisTemplate;
+
+    public volatile int n = 0;
 
     @RequestMapping("/index")
     public String index(){
@@ -43,6 +48,24 @@ public class TestController {
         return  mt.matches();
     }
 
+    @RequestMapping("/ptt")
+    public String Ptt(){
+        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(4);
+        for (n =1;n < 30;n++){
+            fixedThreadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    ptv(n);
+                }
+            });
+        }
+
+        return "success";
+    }
+
+    public void ptv(int n){
+        System.out.println(n);
+    }
 
 
 }
